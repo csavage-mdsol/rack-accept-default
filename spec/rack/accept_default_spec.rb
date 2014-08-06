@@ -34,7 +34,7 @@ describe Rack::AcceptDefault do
       Rack::AcceptDefault.new(rack_app, "application/json")
     end
 
-    it "should override the */* Accept header with application/json if the User Agent is google-api-ruby-client" do
+    it "should override the */* Accept header with the default if the User Agent is google-api-ruby-client" do
       get '/', {}, { 'HTTP_ACCEPT' => "*/*", 'HTTP_USER_AGENT' => "google-api-ruby-client/0.4.0 Mac OS X/10.9.4" }
       last_response.should be_ok
       last_response.body.should == 'application/json'
